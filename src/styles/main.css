@@ -1,0 +1,137 @@
+@import url("https://fonts.googleapis.com/css2?family=Cherish&family=Marck+Script&family=Oooh+Baby&family=WindSong&display=swap");
+body,
+html,
+#root {
+  height: 100%;
+}
+
+.form-signin-container {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+  height: 100%;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+}
+
+.nav-link {
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.doc-page {
+  margin-top: 2em;
+  padding: 2em;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.doc-header {
+  text-align: center;
+  text-transform: uppercase;
+}
+.doc-header h1 {
+  font-size: 1.5em;
+  font-weight: 800;
+}
+.doc-header h2 {
+  font-size: 1em;
+  font-weight: 500;
+}
+.doc-header .doc-title {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  padding: 0.5em 0 0 0;
+}
+
+.doc-body {
+  font-size: 9pt;
+}
+
+.doc-vehicle-info input:disabled {
+  font-family: "Times New Roman", Times, serif;
+  background-color: #fff;
+  color: #000;
+  border-color: #000;
+  border-radius: 0;
+  padding: 0px 5px;
+  font-size: 1em;
+}
+
+.doc-vehicle-info-form input:disabled {
+  font-family: "Marck Script", cursive;
+  background-color: #fff;
+  color: #000;
+  border-color: #000;
+  border-radius: 0;
+  padding: 0px 5px;
+  font-size: 1.1em;
+}
+.doc-vehicle-info-form .doc-form-span {
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 0;
+}
+
+.form-label {
+  margin-bottom: 0;
+}
+
+.doc-footer-label {
+  font-size: 1.2em;
+  font-weight: 800;
+}
+
+.signature {
+  font-weight: 800;
+  line-height: 0.6;
+  margin-top: 10px;
+  border-bottom: 1px solid #000;
+}
+
+.doc-footer-normal {
+  font-family: "Marck Script", cursive;
+  font-size: 1.3em;
+  font-weight: 300;
+}
+
+.marke {
+  font-family: "Marck Script", cursive;
+  font-size: 1.3em;
+  font-weight: 300;
+  line-height: 0.6;
+  margin-top: 10px;
+}
+
+.wind-song {
+  font-family: "WindSong", cursive;
+  font-size: 1.6em;
+  font-weight: 800;
+}
+
+.cherish {
+  font-family: "Cherish", cursive;
+  font-size: 2.1em;
+  line-height: 0.5;
+  font-weight: 300;
+  margin-top: 8px;
+}
+
+.oooh-baby {
+  font-family: "Oooh Baby", cursive;
+  font-size: 1.6em;
+  font-weight: 500;
+  line-height: 0.8;
+  margin-top: 4px;
+}
+
+.doc-footer-underline {
+  border-bottom: 1px solid #000;
+}/*# sourceMappingURL=main.css.map */

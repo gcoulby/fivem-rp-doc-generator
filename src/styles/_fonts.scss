@@ -1,1 +1,45 @@
-@import url("https://fonts.googleapis.com/css2?family=Cherish&family=Marck+Script&family=Oooh+Baby&family=WindSong&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cherish&family=Marck+Script&family=Oooh+Baby&family=WindSong&family=Caveat&family=Libre+Barcode+39+Extended+Text&family=Source+Code+Pro:wght@200;300;400&display=swap");
+
+.marke {
+  font-family: "Marck Script", cursive;
+  font-size: 1.3em;
+  font-weight: 300;
+  line-height: 0.6;
+  margin-top: 10px;
+}
+
+.wind-song {
+  font-family: "WindSong", cursive;
+  font-size: 1.6em;
+  font-weight: 800;
+}
+
+.cherish {
+  font-family: "Cherish", cursive;
+  font-size: 2.1em;
+  line-height: 0.5;
+  font-weight: 300;
+  margin-top: 8px;
+}
+
+.oooh-baby {
+  font-family: "Oooh Baby", cursive;
+  font-size: 1.6em;
+  font-weight: 500;
+  line-height: 0.8;
+  margin-top: 4px;
+}
+
+.libre-barcode {
+  font-family: "Libre Barcode 39 Extended Text", cursive;
+}
+
+.source-code {
+  font-family: "Source Code Pro", monospace;
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+.source-code-important {
+  font-family: "Source Code Pro", monospace !important;
+}

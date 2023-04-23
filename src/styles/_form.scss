@@ -1,9 +1,10 @@
 .doc-page {
   margin-top: 2em;
   padding: 2em;
-  //   box-shadow: 2px 2px 5px #888888;
-  //   height: 80vh;
+  // box-shadow: 2px 2px 5px #888888;
+  height: 80vh;
   font-family: "Times New Roman", Times, serif;
+  position: relative;
 }
 
 .doc-header {
@@ -26,35 +27,6 @@
 
 .doc-body {
   font-size: 9pt;
-}
-
-.doc-vehicle-info {
-  input:disabled {
-    font-family: "Times New Roman", Times, serif;
-    background-color: #fff;
-    color: #000;
-    border-color: #000;
-    border-radius: 0;
-    padding: 0px 5px;
-    font-size: 1em;
-  }
-}
-
-.doc-vehicle-info-form {
-  input:disabled {
-    font-family: "Marck Script", cursive;
-    background-color: #fff;
-    color: #000;
-    border-color: #000;
-    border-radius: 0;
-    padding: 0px 5px;
-    font-size: 1.1em;
-  }
-  .doc-form-span {
-    background-color: #fff;
-    border: 1px solid #000;
-    border-radius: 0;
-  }
 }
 
 .form-label {
@@ -80,36 +52,6 @@
   font-weight: 300;
 }
 
-.marke {
-  font-family: "Marck Script", cursive;
-  font-size: 1.3em;
-  font-weight: 300;
-  line-height: 0.6;
-  margin-top: 10px;
-}
-
-.wind-song {
-  font-family: "WindSong", cursive;
-  font-size: 1.6em;
-  font-weight: 800;
-}
-
-.cherish {
-  font-family: "Cherish", cursive;
-  font-size: 2.1em;
-  line-height: 0.5;
-  font-weight: 300;
-  margin-top: 8px;
-}
-
-.oooh-baby {
-  font-family: "Oooh Baby", cursive;
-  font-size: 1.6em;
-  font-weight: 500;
-  line-height: 0.8;
-  margin-top: 4px;
-}
-
 .doc-footer-underline {
   //   font-size: 1.6em;
   //   font-weight: 500;
@@ -117,4 +59,26 @@
   //   margin-top: 10px;
 
   border-bottom: 1px solid #000;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.doc-info-form {
+  input:disabled,
+  textarea:disabled {
+    font-family: "Marck Script", cursive;
+    background-color: #fff;
+    color: #000;
+    border-color: #000;
+    border-radius: 0;
+    padding: 0px 5px;
+    font-size: 1.1em;
+  }
+  .doc-form-span {
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 0;
+  }
 }

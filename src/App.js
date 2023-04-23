@@ -7,13 +7,19 @@ import { useState } from "react";
 import Navbar from "./components/navbar";
 import DiscordService from "./services/DiscordService";
 import html2canvas from "html2canvas";
+import names from "./lists/names";
+import streetNames from "./lists/street_names";
+import banks from "./lists/banks";
+import HitContract from "./components/hit-contract";
+
+export const AppContext = React.createContext();
 
 function App() {
   const printRef = React.useRef();
   const [password, setPassword] = useState("");
-  const [sadha2n448, setSadha2n448] = useState(false);
+  const [sadha2n448, setSadha2n448] = useState(true);
   const [tool, setTool] = useState("lizard-lick");
-  const [tools, setTools] = useState(["Vehicle Repossessions"]);
+  const [tools, setTools] = useState(["Vehicle Repossessions", "Hit Contracts"]);
   const [selectedToolIndex, setSelectedToolIndex] = useState("Vehicle Repossessions");
 
   const checkPassword = () => {
@@ -31,6 +37,11 @@ function App() {
     const hashHex = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
     return hashHex;
   }
+
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
 
   const { Send } = DiscordService();
 
@@ -84,53 +95,111 @@ function App() {
     });
   };
 
+  const nameToSignature = (name) => {
+    const nameArr = name.split(" ");
+    const first = nameArr[0];
+    const last = nameArr[1];
+    return `${first.charAt(0).toUpperCase()}.${last}`;
+  };
+
+  const getDateForDaysPrior = (days) => {
+    const today = new Date();
+    const twoDaysPrior = new Date(today);
+    twoDaysPrior.setDate(twoDaysPrior.getDate() - days);
+    console.log(twoDaysPrior.toISOString().split("T")[0]);
+    return twoDaysPrior.toISOString().split("T")[0];
+  };
+
+  const rollName = () => {
+    const first = names.first_names[Math.floor(Math.random() * names.first_names.length)];
+    const last = names.last_names[Math.floor(Math.random() * names.last_names.length)];
+    return `${first} ${last}`;
+  };
+
+  const rollAddress = () => {
+    const street = streetNames[Math.floor(Math.random() * streetNames.length)];
+    const number = Math.floor(Math.random() * 1000);
+    const zip = Math.floor(Math.random() * 100000);
+    return `${number} ${street}, SA, ${zip}`;
+  };
+
+  const rollBalance = (min, max) => {
+    let s = Math.random() * (max - min + 1) + min;
+    s = parseFloat(s.toFixed(2));
+    return s;
+  };
+
+  const rollDate = () => {
+    const year = Math.floor(Math.random() * 22) + 2000;
+    let mRnd = Math.floor(Math.random() * 12) + 1;
+    const month = mRnd < 10 ? `0${mRnd}` : mRnd;
+    let dRnd = Math.floor(Math.random() * 28) + 1;
+    const day = dRnd < 10 ? `0${dRnd}` : dRnd;
+    return `${year}-${month}-${day}`;
+  };
+
   return (
     <>
-      {sadha2n448 ? (
-        <>
-          <Navbar setTool={setTool} tools={tools} selectedToolIndex={selectedToolIndex} setSelectedToolIndex={setSelectedToolIndex} />
-          <div id="page-container">
-            <div className="container-fluid">
-              {selectedToolIndex === "Vehicle Repossessions" ? (
-                <RepoForm imageToDiscord={imageToDiscord} printRef={printRef} />
-              ) : (
-                <>
-                  <h1>Select a tool</h1>
-                </>
-              )}
+      <AppContext.Provider
+        value={{
+          formatter: formatter,
+          imageToDiscord: imageToDiscord,
+          printRef: printRef,
+          nameToSignature: nameToSignature,
+          getDateForDaysPrior: getDateForDaysPrior,
+          rollName: rollName,
+          rollAddress: rollAddress,
+          rollBalance: rollBalance,
+          rollDate: rollDate,
+        }}
+      >
+        {sadha2n448 ? (
+          <>
+            <Navbar setTool={setTool} tools={tools} selectedToolIndex={selectedToolIndex} setSelectedToolIndex={setSelectedToolIndex} />
+            <div id="page-container">
+              <div className="container-fluid">
+                <div className="App">
+                  <header className="App-header">
+                    <div className="container-fluid">
+                      <div className="row">{selectedToolIndex === "Vehicle Repossessions" ? <RepoForm /> : <></>}</div>
+                      <div className="row">{selectedToolIndex === "Hit Contracts" ? <HitContract /> : <></>}</div>
+                    </div>
+                  </header>
+                </div>
+              </div>
             </div>
+          </>
+        ) : (
+          <div className="form-signin-container">
+            <main class="form-signin w-100 m-auto text-center">
+              <img src={logo} alt="BlackOut Group" className="img-fluid" />
+              <h5 class="my-3 fw-normal">Please sign in</h5>
+
+              <div class="form-floating my-3">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="floatingPassword"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      checkPassword();
+                    }
+                  }}
+                />
+                <label for="floatingPassword">Password</label>
+              </div>
+
+              <button class="w-100 btn btn-lg btn-secondary" type="submit" onClick={(e) => checkPassword(e.target.value)}>
+                Sign in
+              </button>
+              <p class="mt-5 mb-3 text-body-secondary">© 1865–2023</p>
+            </main>
           </div>
-        </>
-      ) : (
-        <div className="form-signin-container">
-          <main class="form-signin w-100 m-auto text-center">
-            <img src={logo} alt="BlackOut Group" className="img-fluid" />
-            <h5 class="my-3 fw-normal">Please sign in</h5>
-
-            <div class="form-floating my-3">
-              <input
-                type="password"
-                class="form-control"
-                id="floatingPassword"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    checkPassword();
-                  }
-                }}
-              />
-              <label for="floatingPassword">Password</label>
-            </div>
-
-            <button class="w-100 btn btn-lg btn-secondary" type="submit" onClick={(e) => checkPassword(e.target.value)}>
-              Sign in
-            </button>
-            <p class="mt-5 mb-3 text-body-secondary">© 1865–2023</p>
-          </main>
-        </div>
-      )}
+        )}
+      </AppContext.Provider>
     </>
   );
 }

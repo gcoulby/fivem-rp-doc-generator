@@ -1,4 +1,48 @@
-@import url("https://fonts.googleapis.com/css2?family=Cherish&family=Marck+Script&family=Oooh+Baby&family=WindSong&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cherish&family=Marck+Script&family=Oooh+Baby&family=WindSong&family=Caveat&family=Libre+Barcode+39+Extended+Text&family=Source+Code+Pro:wght@200;300;400&display=swap");
+.marke {
+  font-family: "Marck Script", cursive;
+  font-size: 1.3em;
+  font-weight: 300;
+  line-height: 0.6;
+  margin-top: 10px;
+}
+
+.wind-song {
+  font-family: "WindSong", cursive;
+  font-size: 1.6em;
+  font-weight: 800;
+}
+
+.cherish {
+  font-family: "Cherish", cursive;
+  font-size: 2.1em;
+  line-height: 0.5;
+  font-weight: 300;
+  margin-top: 8px;
+}
+
+.oooh-baby {
+  font-family: "Oooh Baby", cursive;
+  font-size: 1.6em;
+  font-weight: 500;
+  line-height: 0.8;
+  margin-top: 4px;
+}
+
+.libre-barcode {
+  font-family: "Libre Barcode 39 Extended Text", cursive;
+}
+
+.source-code {
+  font-family: "Source Code Pro", monospace;
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+.source-code-important {
+  font-family: "Source Code Pro", monospace !important;
+}
+
 body,
 html,
 #root {
@@ -30,7 +74,9 @@ html,
 .doc-page {
   margin-top: 2em;
   padding: 2em;
+  height: 80vh;
   font-family: "Times New Roman", Times, serif;
+  position: relative;
 }
 
 .doc-header {
@@ -55,31 +101,6 @@ html,
   font-size: 9pt;
 }
 
-.doc-vehicle-info input:disabled {
-  font-family: "Times New Roman", Times, serif;
-  background-color: #fff;
-  color: #000;
-  border-color: #000;
-  border-radius: 0;
-  padding: 0px 5px;
-  font-size: 1em;
-}
-
-.doc-vehicle-info-form input:disabled {
-  font-family: "Marck Script", cursive;
-  background-color: #fff;
-  color: #000;
-  border-color: #000;
-  border-radius: 0;
-  padding: 0px 5px;
-  font-size: 1.1em;
-}
-.doc-vehicle-info-form .doc-form-span {
-  background-color: #fff;
-  border: 1px solid #000;
-  border-radius: 0;
-}
-
 .form-label {
   margin-bottom: 0;
 }
@@ -102,36 +123,106 @@ html,
   font-weight: 300;
 }
 
-.marke {
-  font-family: "Marck Script", cursive;
-  font-size: 1.3em;
-  font-weight: 300;
-  line-height: 0.6;
-  margin-top: 10px;
-}
-
-.wind-song {
-  font-family: "WindSong", cursive;
-  font-size: 1.6em;
-  font-weight: 800;
-}
-
-.cherish {
-  font-family: "Cherish", cursive;
-  font-size: 2.1em;
-  line-height: 0.5;
-  font-weight: 300;
-  margin-top: 8px;
-}
-
-.oooh-baby {
-  font-family: "Oooh Baby", cursive;
-  font-size: 1.6em;
-  font-weight: 500;
-  line-height: 0.8;
-  margin-top: 4px;
-}
-
 .doc-footer-underline {
   border-bottom: 1px solid #000;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.doc-info-form input:disabled,
+.doc-info-form textarea:disabled {
+  font-family: "Marck Script", cursive;
+  background-color: #fff;
+  color: #000;
+  border-color: #000;
+  border-radius: 0;
+  padding: 0px 5px;
+  font-size: 1.1em;
+}
+.doc-info-form .doc-form-span {
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 0;
+}
+
+.doc-vehicle-info input:disabled {
+  font-family: "Times New Roman", Times, serif;
+  background-color: #fff;
+  color: #000;
+  border-color: #000;
+  border-radius: 0;
+  padding: 0px 5px;
+  font-size: 1em;
+}
+
+.classified-stamp {
+  position: absolute;
+  width: 40%;
+  top: 15%;
+  left: 12%;
+}
+
+.contract-code {
+  position: absolute;
+  top: 45%;
+  left: -400px;
+  transform: rotate(90deg);
+  font-size: 3.8em;
+  color: rgb(155, 155, 155);
+  text-transform: uppercase;
+}
+
+.hit-contract-body {
+  margin-top: 26em !important;
+}
+.hit-contract-body input {
+  font-family: "Source Code Pro", monospace !important;
+  font-weight: 300;
+}
+
+.target-notes {
+  font-size: 12pt !important;
+  font-weight: 300;
+}
+
+.polaroid-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.polaroid-surround {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.polaroid {
+  position: absolute;
+  top: 30px;
+  right: 2px;
+  width: 40%;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.paperclip {
+  position: absolute;
+  top: 0;
+  right: -2px;
+  width: 40%;
+  z-index: 1;
+}
+
+.polaroid-text {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  width: 100%;
+  transform: rotate(-5deg);
+  font-family: "Caveat", cursive;
 }/*# sourceMappingURL=main.css.map */

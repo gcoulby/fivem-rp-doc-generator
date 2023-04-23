@@ -1,0 +1,29 @@
+.classified-stamp {
+  position: absolute;
+  width: 40%;
+  top: 15%;
+  left: 12%;
+}
+
+.contract-code {
+  position: absolute;
+  top: 45%;
+  left: -400px;
+  transform: rotate(90deg);
+  font-size: 3.8em;
+  color: rgb(155, 155, 155);
+  text-transform: uppercase;
+}
+
+.hit-contract-body {
+  margin-top: 26em !important;
+  input {
+    font-family: "Source Code Pro", monospace !important;
+    font-weight: 300;
+  }
+}
+
+.target-notes {
+  font-size: 12pt !important;
+  font-weight: 300;
+}

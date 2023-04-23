@@ -6,26 +6,16 @@ function Navbar(props) {
       <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
         <div class="container-fluid">
           <img src={logo} alt="BlackOut Group" className="img-fluid" style={{ maxHeight: "50px" }} />
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarCollapse"
-            aria-controls="navbarCollapse"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+          <select
+            class="form-select ms-4 bg-dark text-light"
+            aria-label="Default select example"
+            value={props.selectedToolIndex}
+            onChange={(e) => props.setSelectedToolIndex(e.target.value)}
           >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-              <li class="nav-item">
-                <div class="nav-link active" aria-current="page" onClick={(e) => props.setTool("lizard-lick")}>
-                  Lizard Lick
-                </div>
-              </li>
-            </ul>
-          </div>
+            {props.tools.map((tool) => (
+              <option value={tool}>{tool}</option>
+            ))}
+          </select>
         </div>
       </nav>
       ;

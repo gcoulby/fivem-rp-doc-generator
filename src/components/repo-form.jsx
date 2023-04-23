@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
-import html2canvas from "html2canvas";
+
 import logo from "../img/SanAndreasStateSeal.png";
 import names from "../lists/names";
 import streetNames from "../lists/street_names";
 import banks from "../lists/banks";
+import FormController from "./form-controller";
+
 function RepoForm(props) {
-  const printRef = React.useRef();
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [registration, setRegistration] = useState("");
   const [make, setMake] = useState("");
   const [model, setModel] = useState("");
-  const [purchasePrice, setPurchasePrice] = useState(0);
+  const [purchasePrice, _setPurchasePrice] = useState(6000);
   const [purchaseDate, setPurchaseDate] = useState("");
-  const [outstandingBalance, setOutstandningBalance] = useState(0);
+  const [outstandingBalance, setOutstandningBalance] = useState(4000);
   const [docId] = useState(Math.floor(Math.random() * 1000000));
   const [lien] = useState(`${banks[Math.floor(Math.random() * banks.length)]}`);
   const [lienName, setLienName] = useState(
@@ -38,14 +39,20 @@ function RepoForm(props) {
     setAddress(`${number} ${street}, SA, ${zip}`);
   };
 
+  const setPurchasePrice = (price) => {
+    _setPurchasePrice(price);
+    rollOutstandingBalance();
+  };
+
   const rollPrice = () => {
-    const price = Math.random() * 100000;
-    setPurchasePrice(price);
+    const price = Math.random() * 100000 + 6000;
+    setPurchasePrice(parseFloat(price.toFixed(2)));
+    rollOutstandingBalance();
   };
 
   const rollOutstandingBalance = () => {
-    const balance = Math.random() * purchasePrice;
-    setOutstandningBalance(balance);
+    const balance = Math.random() * (purchasePrice - 6000) + 4000;
+    setOutstandningBalance(parseFloat(balance.toFixed(2)));
   };
 
   const nameToSignature = (name) => {
@@ -76,25 +83,6 @@ function RepoForm(props) {
     currency: "USD",
   });
 
-  const handleDownloadImage = async () => {
-    const element = printRef.current;
-    const canvas = await html2canvas(element);
-
-    const data = canvas.toDataURL("image/jpg");
-    const link = document.createElement("a");
-
-    if (typeof link.download === "string") {
-      link.href = data;
-      link.download = "image.jpg";
-
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } else {
-      window.open(data);
-    }
-  };
-
   const getDateForDaysPrior = (days) => {
     const today = new Date();
     const twoDaysPrior = new Date(today);
@@ -108,114 +96,61 @@ function RepoForm(props) {
       <header className="App-header">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-4">
-              <label className="form-label">Name</label>
-              <div className="input-group mb-3">
-                <input type="text" placeholder="Name" className="form-control" value={name} onChange={(e) => setName(e.target.value)} />
-                <span className="input-group-text" onClick={() => rollName()}>
-                  🎲
-                </span>
-              </div>
-              <label className="form-label">Address</label>
-              <div className="input-group mb-3">
-                <input type="text" placeholder="Address" className="form-control" value={address} onChange={(e) => setAddress(e.target.value)} />
-                <span className="input-group-text" onClick={() => rollAddress()}>
-                  🎲
-                </span>
-              </div>
-              <label className="form-label">Registration</label>
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  placeholder="Registration"
-                  className="form-control"
-                  value={registration}
-                  onChange={(e) => setRegistration(e.target.value)}
-                />
-              </div>
-              <label className="form-label">Make</label>
-              <div className="input-group mb-3">
-                <input type="text" placeholder="Make" className="form-control" value={make} onChange={(e) => setMake(e.target.value)} />
-              </div>
-              <label className="form-label">Model</label>
-              <div className="input-group mb-3">
-                <input type="text" placeholder="Model" className="form-control" value={model} onChange={(e) => setModel(e.target.value)} />
-              </div>
-              <label className="form-label">Purchase Price</label>
-              <div className="input-group mb-3">
-                <span className="input-group-text">$</span>
-                <input
-                  type="number"
-                  placeholder="Purchase Price"
-                  className="form-control"
-                  value={purchasePrice.toFixed(2)}
-                  onChange={(e) => setPurchasePrice(e.target.value)}
-                />
-                <span className="input-group-text" onClick={() => rollPrice()}>
-                  🎲
-                </span>
-              </div>
-              <label className="form-label">Purchase Date</label>
-              <div className="input-group mb-3">
-                <input
-                  type="date"
-                  placeholder="Purchase Date"
-                  className="form-control"
-                  value={purchaseDate}
-                  onChange={(e) => setPurchaseDate(e.target.value)}
-                />
-                <span className="input-group-text" onClick={() => rollDate()}>
-                  🎲
-                </span>
-              </div>
-              <label className="form-label">Outstanding Balance</label>
-              <div className="input-group mb-3">
-                <span className="input-group-text">$</span>
-                <input
-                  type="number"
-                  placeholder="Outstanding Balance"
-                  className="form-control"
-                  value={outstandingBalance.toFixed(2)}
-                  onChange={(e) => setOutstandningBalance(e.target.value)}
-                />
-                <span className="input-group-text" onClick={() => rollOutstandingBalance()}>
-                  🎲
-                </span>
-              </div>
+            <div className="col-sm-12 col-md-4">
+              <FormController label={"Name"} value={name} setValue={setName} showRoller={true} rollValue={rollName} />
+              <FormController label={"Address"} value={address} setValue={setAddress} showRoller={true} rollValue={rollAddress} />
+              <FormController label={"Registration"} value={registration} setValue={setRegistration} />
+              <FormController label={"Make"} value={make} setValue={setMake} />
+              <FormController label={"Model"} value={model} setValue={setModel} />
+              <FormController
+                label={"Purchase Price"}
+                type={"number"}
+                min={6000}
+                value={purchasePrice}
+                setValue={setPurchasePrice}
+                showRoller={true}
+                rollValue={rollPrice}
+                showPrefix={true}
+                prefix="$"
+              />
+              <FormController
+                label={"Purchase Date"}
+                type={"date"}
+                value={purchaseDate}
+                setValue={setPurchaseDate}
+                showRoller={true}
+                rollValue={rollDate}
+              />
+              <FormController
+                label={"Outstanding Balance"}
+                type={"number"}
+                min={4000}
+                value={outstandingBalance}
+                setValue={setOutstandningBalance}
+                showRoller={true}
+                rollValue={rollOutstandingBalance}
+                showPrefix={true}
+                prefix="$"
+              />
+              <hr />
+              <FormController label={"Repo Company"} value={repoCompany} setValue={setRepoCompany} />
+              <FormController
+                label={"Repo Company Rep"}
+                value={repoCompanyRep}
+                setValue={setRepoCompanyRep}
+                showRoller={true}
+                rollValue={rollRepoCompanyRep}
+              />
 
               <hr />
-              <label className="form-label">Repossession Company</label>
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  placeholder="Repossession Company"
-                  className="form-control"
-                  value={repoCompany}
-                  onChange={(e) => setRepoCompany(e.target.value)}
-                />
-              </div>
-              <label className="form-label">Repo Company Representative</label>
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  placeholder="Repo Company Representative"
-                  className="form-control"
-                  value={repoCompanyRep}
-                  onChange={(e) => setRepoCompanyRep(e.target.value)}
-                />
-                <span className="input-group-text" onClick={() => rollRepoCompanyRep()}>
-                  🎲
-                </span>
-              </div>
-              <hr />
               <div>
-                <button className="btn btn-dark form-control" type="button" onClick={handleDownloadImage}>
-                  Download as Image
+                <button className="btn btn-dark form-control" type="button" onClick={() => props.imageToDiscord()}>
+                  Copy Image URL to Clipboard
                 </button>
               </div>
             </div>
-            <div className="col-8">
-              <div className="doc-container" ref={printRef}>
+            <div className="col-sm-12 col-md-8">
+              <div className="doc-container" ref={props.printRef}>
                 <div className="doc-page">
                   <div className="row">
                     <div className="col-2">
@@ -323,9 +258,9 @@ function RepoForm(props) {
                   </div>
                   <div className="row mt-4">
                     <div className="col-6 doc-footer">
-                      <span className="doc-footer-label">Lien Signature: </span>
+                      <span className="doc-footer-label">Lien Holder Representative: </span>
                       <div className="signature wind-song">{nameToSignature(lienName)}</div>
-                      <span className="doc-footer-label">Lien: </span>
+                      <span className="doc-footer-label">Lien Holder: </span>
                       <div className="doc-footer-underline marke">{lien}</div>
                       <span className="doc-footer-label">Date: </span>
                       <div className="doc-footer-underline marke">{getDateForDaysPrior(2)}</div>

@@ -24,7 +24,7 @@ function RepoForm(props) {
       names.last_names[Math.floor(Math.random() * names.last_names.length)]
     }`
   );
-  const [repoCompany, setRepoCompany] = useState("San Andreas State Auto Recovery");
+  const [repoCompany, setRepoCompany] = useState("San Andreas State Recoveries");
   const [repoCompanyRep, setRepoCompanyRep] = useState("Jet Morris");
 
   return (

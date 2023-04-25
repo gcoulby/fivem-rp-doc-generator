@@ -11,6 +11,8 @@ import names from "./lists/names";
 import streetNames from "./lists/street_names";
 import banks from "./lists/banks";
 import HitContract from "./components/hit-contract";
+import HomeRepoForm from "./components/home-repo-form";
+import ScratchCard from "./components/scratch-card";
 
 export const AppContext = React.createContext();
 
@@ -18,8 +20,7 @@ function App() {
   const printRef = React.useRef();
   const [password, setPassword] = useState("");
   const [sadha2n448, setSadha2n448] = useState(false);
-  const [tool, setTool] = useState("lizard-lick");
-  const [tools, setTools] = useState(["Vehicle Repossessions", "Hit Contracts"]);
+  const [tools, setTools] = useState(["Vehicle Repossessions", "Home Repossessions", "Hit Contracts", "Scratch Card"]);
   const [selectedToolIndex, setSelectedToolIndex] = useState("Vehicle Repossessions");
 
   const checkPassword = () => {
@@ -89,10 +90,19 @@ function App() {
   const imageToDiscord = async () => {
     getExportFile().then((file) => {
       Send(file).then((res) => {
-        console.log(res.data.attachments[0].url);
         navigator.clipboard.writeText(res.data.attachments[0].url);
       });
     });
+  };
+
+  const createContractCode = () => {
+    //code format [0-9A-Z]{6}_([0-9A-Z]{6}_){2}[0-9A-Z]{6}
+    let code = "";
+    for (let i = 0; i < 3; i++) {
+      code += Math.random().toString(36).substr(2, 6) + "_";
+    }
+    code += Math.random().toString(36).substr(2, 6);
+    return code;
   };
 
   const nameToSignature = (name) => {
@@ -106,7 +116,6 @@ function App() {
     const today = new Date();
     const twoDaysPrior = new Date(today);
     twoDaysPrior.setDate(twoDaysPrior.getDate() - days);
-    console.log(twoDaysPrior.toISOString().split("T")[0]);
     return twoDaysPrior.toISOString().split("T")[0];
   };
 
@@ -151,18 +160,21 @@ function App() {
           rollAddress: rollAddress,
           rollBalance: rollBalance,
           rollDate: rollDate,
+          createContractCode: createContractCode,
         }}
       >
         {sadha2n448 ? (
           <>
-            <Navbar setTool={setTool} tools={tools} selectedToolIndex={selectedToolIndex} setSelectedToolIndex={setSelectedToolIndex} />
+            <Navbar tools={tools} selectedToolIndex={selectedToolIndex} setSelectedToolIndex={setSelectedToolIndex} />
             <div id="page-container">
               <div className="container-fluid">
                 <div className="App">
                   <header className="App-header">
                     <div className="container-fluid">
                       <div className="row">{selectedToolIndex === "Vehicle Repossessions" ? <RepoForm /> : <></>}</div>
+                      <div className="row">{selectedToolIndex === "Home Repossessions" ? <HomeRepoForm /> : <></>}</div>
                       <div className="row">{selectedToolIndex === "Hit Contracts" ? <HitContract /> : <></>}</div>
+                      <div className="row">{selectedToolIndex === "Scratch Card" ? <ScratchCard /> : <></>}</div>
                     </div>
                   </header>
                 </div>
@@ -171,14 +183,14 @@ function App() {
           </>
         ) : (
           <div className="form-signin-container">
-            <main class="form-signin w-100 m-auto text-center">
+            <main className="form-signin w-100 m-auto text-center">
               <img src={logo} alt="BlackOut Group" className="img-fluid" />
-              <h5 class="my-3 fw-normal">Please sign in</h5>
+              <h5 className="my-3 fw-normal">Please sign in</h5>
 
-              <div class="form-floating my-3">
+              <div className="form-floating my-3">
                 <input
                   type="password"
-                  class="form-control"
+                  className="form-control"
                   id="floatingPassword"
                   placeholder="Password"
                   value={password}
@@ -189,13 +201,13 @@ function App() {
                     }
                   }}
                 />
-                <label for="floatingPassword">Password</label>
+                <label htmlFor="floatingPassword">Password</label>
               </div>
 
-              <button class="w-100 btn btn-lg btn-secondary" type="submit" onClick={(e) => checkPassword(e.target.value)}>
+              <button className="w-100 btn btn-lg btn-secondary" type="submit" onClick={(e) => checkPassword(e.target.value)}>
                 Sign in
               </button>
-              <p class="mt-5 mb-3 text-body-secondary">© 1865–2023</p>
+              <p className="mt-5 mb-3 text-body-secondary">© 1865–2023</p>
             </main>
           </div>
         )}

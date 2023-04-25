@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cherish&family=Marck+Script&family=Oooh+Baby&family=WindSong&family=Caveat&family=Libre+Barcode+39+Extended+Text&family=Source+Code+Pro:wght@200;300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Caveat&family=Cherish&family=Iceland&family=Libre+Barcode+39+Extended+Text&family=Marck+Script&family=Oooh+Baby&family=Source+Code+Pro:wght@200&family=WindSong&display=swap");
 .marke {
   font-family: "Marck Script", cursive;
   font-size: 1.3em;
@@ -74,7 +74,6 @@ html,
 .doc-page {
   margin-top: 2em;
   padding: 2em;
-  height: 80vh;
   font-family: "Times New Roman", Times, serif;
   position: relative;
 }
@@ -147,6 +146,27 @@ html,
   border-radius: 0;
 }
 
+.form-text-box {
+  padding: 0px 5px;
+  border: 1px solid black;
+  display: block;
+}
+
+.form-text-box-5 {
+  height: 8em;
+}
+
+.form-field-inline {
+  width: 200px;
+  display: inline-block;
+  text-align: center;
+  border-bottom: 1px solid black;
+}
+
+.w-300 {
+  width: 300px !important;
+}
+
 .doc-vehicle-info input:disabled {
   font-family: "Times New Roman", Times, serif;
   background-color: #fff;
@@ -174,9 +194,10 @@ html,
   text-transform: uppercase;
 }
 
-.hit-contract-body {
-  margin-top: 26em !important;
+.hit-contract-body-spacer {
+  height: 26em;
 }
+
 .hit-contract-body input {
   font-family: "Source Code Pro", monospace !important;
   font-weight: 300;

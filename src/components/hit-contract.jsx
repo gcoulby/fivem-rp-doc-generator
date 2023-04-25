@@ -21,16 +21,7 @@ function HitContract(props) {
   const [handlerPhone, setHandlerPhone] = useState("");
   const [howToClaim, setHowToClaim] = useState("");
 
-  const createContractCode = () => {
-    //code format [0-9A-Z]{6}_([0-9A-Z]{6}_){2}[0-9A-Z]{6}
-    let code = "";
-    for (let i = 0; i < 3; i++) {
-      code += Math.random().toString(36).substr(2, 6) + "_";
-    }
-    code += Math.random().toString(36).substr(2, 6);
-    return code;
-  };
-  const [contract_code, setContractCode] = useState(createContractCode());
+  const [contract_code, setContractCode] = useState(context.createContractCode());
 
   return (
     <>
@@ -67,6 +58,7 @@ function HitContract(props) {
                 <Polaroid imageUrl={imageUrl} text={target} />
               </div>
             </div>
+            <div className="hit-contract-body-spacer" />
             <div className="row mt-4 hit-contract-body">
               <div className="col-1" />
               <div className="col-11 doc-body">
@@ -110,13 +102,7 @@ function HitContract(props) {
                 <div className="row doc-info-form source-code">
                   <div className="col-12">
                     <label className="form-label">Notes</label>
-                    <textarea
-                      className="form-control target-notes source-code-important "
-                      placeholder="Notes"
-                      disabled={true}
-                      value={targetNotes}
-                      rows={5}
-                    />
+                    <p className="form-text-box form-text-box-5 target-notes">{targetNotes}</p>
                   </div>
                 </div>
                 <div className="row doc-info-form source-code mt-3 ">
@@ -140,13 +126,7 @@ function HitContract(props) {
                 <div className="row doc-info-form source-code">
                   <div className="col-12">
                     <label className="form-label">How to claim reward</label>
-                    <textarea
-                      className="form-control target-notes source-code-important"
-                      rows={3}
-                      placeholder="How to claim"
-                      disabled={true}
-                      value={howToClaim}
-                    />
+                    <p className="form-text-box form-text-box-5 target-notes">{howToClaim}</p>
                   </div>
                 </div>
               </div>

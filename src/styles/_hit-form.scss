@@ -15,8 +15,11 @@
   text-transform: uppercase;
 }
 
+.hit-contract-body-spacer {
+  height: 26em;
+}
+
 .hit-contract-body {
-  margin-top: 26em !important;
   input {
     font-family: "Source Code Pro", monospace !important;
     font-weight: 300;

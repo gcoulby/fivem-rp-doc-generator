@@ -2,7 +2,7 @@
   margin-top: 2em;
   padding: 2em;
   // box-shadow: 2px 2px 5px #888888;
-  height: 80vh;
+  // height: 80vh;
   font-family: "Times New Roman", Times, serif;
   position: relative;
 }
@@ -81,4 +81,25 @@
     border: 1px solid #000;
     border-radius: 0;
   }
+}
+
+.form-text-box {
+  padding: 0px 5px;
+  border: 1px solid black;
+  display: block;
+}
+
+.form-text-box-5 {
+  height: 8em;
+}
+
+.form-field-inline {
+  width: 200px;
+  display: inline-block;
+  text-align: center;
+  border-bottom: 1px solid black;
+}
+
+.w-300 {
+  width: 300px !important;
 }

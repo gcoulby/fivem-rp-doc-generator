@@ -13,6 +13,7 @@ import banks from "./lists/banks";
 import HitContract from "./components/hit-contract";
 import HomeRepoForm from "./components/home-repo-form";
 import ScratchCard from "./components/scratch-card";
+import PegasusRental from "./components/pegasus-rental";
 
 export const AppContext = React.createContext();
 
@@ -20,7 +21,7 @@ function App() {
   const printRef = React.useRef();
   const [password, setPassword] = useState("");
   const [sadha2n448, setSadha2n448] = useState(false);
-  const [tools, setTools] = useState(["Vehicle Repossessions", "Home Repossessions", "Hit Contracts", "Scratch Card"]);
+  const [tools, setTools] = useState(["Vehicle Repossessions", "Home Repossessions", "Hit Contracts", "Scratch Card", "Pegasus Rental"]);
   const [selectedToolIndex, setSelectedToolIndex] = useState("Vehicle Repossessions");
 
   const checkPassword = () => {
@@ -147,6 +148,10 @@ function App() {
     return `${year}-${month}-${day}`;
   };
 
+  const rollNumericCode = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
+
   return (
     <>
       <AppContext.Provider
@@ -161,6 +166,7 @@ function App() {
           rollBalance: rollBalance,
           rollDate: rollDate,
           createContractCode: createContractCode,
+          rollNumericCode: rollNumericCode,
         }}
       >
         {sadha2n448 ? (
@@ -175,6 +181,7 @@ function App() {
                       <div className="row">{selectedToolIndex === "Home Repossessions" ? <HomeRepoForm /> : <></>}</div>
                       <div className="row">{selectedToolIndex === "Hit Contracts" ? <HitContract /> : <></>}</div>
                       <div className="row">{selectedToolIndex === "Scratch Card" ? <ScratchCard /> : <></>}</div>
+                      <div className="row">{selectedToolIndex === "Pegasus Rental" ? <PegasusRental /> : <></>}</div>
                     </div>
                   </header>
                 </div>

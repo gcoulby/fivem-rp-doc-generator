@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/fivem-rp-doc-generator/static/css/main.6ec9c3f2.css",
-    "main.js": "/fivem-rp-doc-generator/static/js/main.8b900910.js",
+    "main.css": "/fivem-rp-doc-generator/static/css/main.f764595b.css",
+    "main.js": "/fivem-rp-doc-generator/static/js/main.6605a4ca.js",
     "static/js/787.cc982e52.chunk.js": "/fivem-rp-doc-generator/static/js/787.cc982e52.chunk.js",
     "static/media/PolaroidBlank.png": "/fivem-rp-doc-generator/static/media/PolaroidBlank.a55e62292a28d4807a53.png",
     "static/media/Classified.png": "/fivem-rp-doc-generator/static/media/Classified.5adfc6b7cc03a9e8bb15.png",
@@ -9,13 +9,14 @@
     "static/media/SanAndreasStateSeal.png": "/fivem-rp-doc-generator/static/media/SanAndreasStateSeal.fb95ab112aaabb2be4da.png",
     "static/media/lotto.png": "/fivem-rp-doc-generator/static/media/lotto.d651a012c49ee3d70511.png",
     "static/media/scratch.png": "/fivem-rp-doc-generator/static/media/scratch.90a55c50445e4165b2fe.png",
+    "static/media/pegasus.png": "/fivem-rp-doc-generator/static/media/pegasus.2f3466a6a5773d6e4a10.png",
     "index.html": "/fivem-rp-doc-generator/index.html",
-    "main.6ec9c3f2.css.map": "/fivem-rp-doc-generator/static/css/main.6ec9c3f2.css.map",
-    "main.8b900910.js.map": "/fivem-rp-doc-generator/static/js/main.8b900910.js.map",
+    "main.f764595b.css.map": "/fivem-rp-doc-generator/static/css/main.f764595b.css.map",
+    "main.6605a4ca.js.map": "/fivem-rp-doc-generator/static/js/main.6605a4ca.js.map",
     "787.cc982e52.chunk.js.map": "/fivem-rp-doc-generator/static/js/787.cc982e52.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6ec9c3f2.css",
-    "static/js/main.8b900910.js"
+    "static/css/main.f764595b.css",
+    "static/js/main.6605a4ca.js"
   ]
 }
